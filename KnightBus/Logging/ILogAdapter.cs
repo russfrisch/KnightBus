@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KnightBus.Interfaces
+namespace KnightBus.Logging
 {
-    public interface IEvent : IMessage
+    public interface ILogAdapter
     {
     }
 }

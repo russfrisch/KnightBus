@@ -1,9 +1,10 @@
-﻿using System;
+﻿using KnightBus.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightBus.Interfaces
+namespace KnightBus
 {
     public interface IBus
     {

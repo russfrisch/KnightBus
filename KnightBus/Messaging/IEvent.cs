@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KnightBus.Interfaces
+namespace KnightBus.Messaging
 {
-    public interface IMessage
+    public interface IEvent : IMessage
     {
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KnightBus.Interfaces
+namespace KnightBus.Transport
 {
-    public interface ICommand : IMessage
+    public interface ITransportAdapter
     {
     }
 }

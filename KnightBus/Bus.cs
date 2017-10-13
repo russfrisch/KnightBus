@@ -1,4 +1,5 @@
-﻿using KnightBus.Interfaces;
+﻿using KnightBus.Configuration;
+using KnightBus.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace KnightBus
         private IEnumerable<IHandleMessages<ICommand>> CommandHandlers { get; set; }
         private Dictionary<Type, IList<ISubscription>> _subscriptions { get; set; }
 
-        public Bus()
+        internal Bus(IBusConfiguration busConfiguration)
         {
             _subscriptions = new Dictionary<Type, IList<ISubscription>>();
             //Console.WriteLine("Initialzing Service Bus...");
@@ -26,6 +27,10 @@ namespace KnightBus
             //Console.WriteLine("Loading Command Handlers...");
             //CommandHandlers = FindCommandHandlers();
             //Console.WriteLine($"Found {CommandHandlers.Count()} Command Handlers.");
+        }
+        internal IBus Start()
+        {
+            throw new NotImplementedException();
         }
 
         public void Subscribe<T>(Func<T, Task> handler) where T : class, IMessage
@@ -54,6 +59,11 @@ namespace KnightBus
             await subscription.NotifyAsync(message);
         }
 
+        public static BusConfiguration Create()
+        {
+            return new BusConfiguration();
+        }
+
         private IEnumerable<ICommand> FindCommands()
         {
             return from assembly in AppDomain.CurrentDomain.GetAssemblies()
@@ -68,6 +78,23 @@ namespace KnightBus
                             from t in assembly.GetTypes()
                             where t.GetInterfaces().Contains(typeof(IHandleMessages<ICommand>))
                             select t as IHandleMessages<ICommand>;
+        }
+
+        
+
+        Task IBus.SendAsync(ICommand message)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IBus.PublishAsync(IEvent message)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBus.Subscribe<T>(Func<T, Task> handler)
+        {
+            throw new NotImplementedException();
         }
     }
 }

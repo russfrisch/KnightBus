@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightBus.Interfaces
+namespace KnightBus.Messaging
 {
-    internal interface ISubscription
+    public interface IHandleMessages<T>
     {
-        Task NotifyAsync(IMessage message);
+        Task Handle(T message);
     }
 }

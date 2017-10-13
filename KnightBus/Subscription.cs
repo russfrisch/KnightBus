@@ -1,4 +1,4 @@
-﻿using KnightBus.Interfaces;
+﻿using KnightBus.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Text;
